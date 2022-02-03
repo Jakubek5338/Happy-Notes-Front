@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, FC } from 'react';
-import axios from 'axios';
+import Axios from '../../axios'
 import { useError } from './useError';
 
 interface ISignInProps {
@@ -7,7 +7,6 @@ interface ISignInProps {
   password: string;
 }
 
-const URL = process.env.REACT_APP_API_URL;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AuthContext = React.createContext({} as any);
@@ -21,7 +20,7 @@ export const AuthProvider: FC = ({ children }) => {
     if (token) {
       (async () => {
         try {
-          const response = await axios.get(`${URL}/api/user/me`, {
+          const response = await Axios.get(`/api/user/me`, {
             headers: {
               authorization: token,
             },
@@ -36,7 +35,7 @@ export const AuthProvider: FC = ({ children }) => {
 
   const signIn = async ({ email, password }: ISignInProps) => {
     try {
-      const response = await axios.post(`${URL}/api/user/login`, {
+      const response = await Axios.post(`/api/user/login`, {
         email,
         password,
       });
@@ -49,7 +48,7 @@ export const AuthProvider: FC = ({ children }) => {
 
   const signUp = async ({ email, password }: ISignInProps) => {
     try {
-      const response = await axios.post(`${URL}/api/user/register`, {
+      const response = await Axios.post(`/api/user/register`, {
         email,
         password,
       });
