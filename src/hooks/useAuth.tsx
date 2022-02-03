@@ -7,7 +7,7 @@ interface ISignInProps {
   password: string;
 }
 
-const URL = process.env.REACT_APP_API_URL
+const URL = process.env.REACT_APP_API_URL;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AuthContext = React.createContext({} as any);
