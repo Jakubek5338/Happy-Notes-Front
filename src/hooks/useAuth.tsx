@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState, FC } from 'react';
-import Axios from '../../axiosconfig'
+import Axios from '../axiosconfig';
 import { useError } from './useError';
 
 interface ISignInProps {
   email: string;
   password: string;
 }
-
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AuthContext = React.createContext({} as any);
