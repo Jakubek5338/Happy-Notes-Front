@@ -1,12 +1,12 @@
 import { ActionType } from '../action-types';
 import { Dispatch } from 'redux';
-import axios from 'axios';
+import Axios from '../../axiosconfig';
 
 export const additem = (title: string, body: string, itemType: string) => {
   const creator = localStorage.getItem('token');
   return async (dispatch: Dispatch) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/note', {
+      const response = await Axios.post('/api/note', {
         headers: {
           authorization: creator,
         },
@@ -35,7 +35,7 @@ export const additem = (title: string, body: string, itemType: string) => {
 export const removeitem = (_id: string, itemType: string) => {
   return async (dispatch: Dispatch) => {
     try {
-      await axios.delete(`http://localhost:8080/api/note/${_id}`);
+      await Axios.delete(`/api/note/${_id}`);
       dispatch({
         type: ActionType.REMOVEITEM,
         _id,
@@ -52,7 +52,7 @@ export const fetchItems = (itemType: string) => {
   if (creator) {
     return async (dispatch: Dispatch) => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/note/${itemType}`, {
+        const response = await Axios.get(`/api/note/${itemType}`, {
           headers: {
             authorization: creator,
           },
