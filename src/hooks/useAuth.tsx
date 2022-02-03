@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, FC } from 'react';
-import Axios from '../../axios'
+import Axios from '../../axiosconfig'
 import { useError } from './useError';
 
 interface ISignInProps {
