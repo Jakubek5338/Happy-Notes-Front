@@ -7,6 +7,8 @@ interface ISignInProps {
   password: string;
 }
 
+const URL = process.env.REACT_APP_API_URL
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AuthContext = React.createContext({} as any);
 
@@ -19,7 +21,7 @@ export const AuthProvider: FC = ({ children }) => {
     if (token) {
       (async () => {
         try {
-          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/me`, {
+          const response = await axios.get(`${URL}/api/user/me`, {
             headers: {
               authorization: token,
             },
@@ -34,7 +36,7 @@ export const AuthProvider: FC = ({ children }) => {
 
   const signIn = async ({ email, password }: ISignInProps) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/user/login`, {
+      const response = await axios.post(`${URL}/api/user/login`, {
         email,
         password,
       });
@@ -47,7 +49,7 @@ export const AuthProvider: FC = ({ children }) => {
 
   const signUp = async ({ email, password }: ISignInProps) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/user/register`, {
+      const response = await axios.post(`${URL}/api/user/register`, {
         email,
         password,
       });
